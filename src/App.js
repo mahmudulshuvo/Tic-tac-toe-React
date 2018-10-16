@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ChoosePlayer from "./ChoosePlayer";
 import PlayerStatus from "./PlayerStatus";
 import "./App.css";
 
@@ -88,6 +87,10 @@ class App extends Component {
     }
 
     render() {
+        let checkNull = this.state.board.some(function(el) {
+            return el === null;
+        });
+
         return (
             <div className="App">
                 <h1>Tic-tac-toe React</h1>
@@ -97,7 +100,7 @@ class App extends Component {
                     winner={this.state.winner}
                     setPlayer={e => this.setPlayer(e)}
                 />
-                {this.state.winner ? (
+                {this.state.winner || !checkNull ? (
                     <div style={{ width: "80%" }}>
                         <input
                             type="submit"
